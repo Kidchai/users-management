@@ -1,0 +1,13 @@
+/.idea/
+/back/.idea/
+/back/.mvn/
+/back/target/
+
+/back/HELP.md
+/back/mvnw.cmd
+/back/mvnw
+
+node_modules
+/front/demo-boot-front/public/
+
+/front/demo-boot-front/README.md
