@@ -6,8 +6,12 @@
 /back/HELP.md
 /back/mvnw.cmd
 /back/mvnw
+/back/pom.xml
 
 node_modules
 /front/demo-boot-front/public/
 
 /front/demo-boot-front/README.md
+/front/demo-boot-front/HELP.md
+/front/demo-boot-front/mvnw
+/front/demo-boot-front/mvnw.cmd
