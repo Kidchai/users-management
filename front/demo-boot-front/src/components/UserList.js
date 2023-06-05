@@ -17,15 +17,15 @@ function UserList() {
             });
     }, []);
 
-    const deleteUser = (id) => {
+    const removeUser = (id) => {
         deleteUser(id)
-            .then((response) => {
-                setUsers(users.filter((user) => user.id !== id));
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    };
+        .then(() => {
+            setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+      };
 
     const viewUser = (id) => {
         navigate(`/view/${id}`);
@@ -74,7 +74,7 @@ function UserList() {
                                     </button>
                                     <button
                                         style={{ marginLeft: "10px" }}
-                                        onClick={() => deleteUser(user.id)}
+                                        onClick={() => removeUser(user.id)}
                                         className="btn btn-danger"
                                     >
                                         Delete
