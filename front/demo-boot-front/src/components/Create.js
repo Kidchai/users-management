@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from "react";
-import {useNavigate, useParams} from "react-router-dom";
-import {getUser, createUser, updateUser} from "../UserService";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getUser, createUser } from "../UserService";
 
 function Create() {
     const navigate = useNavigate;
-    const {id} = useParams;
+    const { id } = useParams;
 
     const [user, setUser] = useState({
         firstName: "",
@@ -16,8 +16,8 @@ function Create() {
         if (id !== "_add") {
             getUser(id)
                 .then(response => {
-                    const {firstName, lastName, email} = response.data;
-                    setUser({firstName, lastName, email});
+                    const { firstName, lastName, email } = response.data;
+                    setUser({ firstName, lastName, email });
                 })
                 .catch(error => {
                     console.log(error);
@@ -25,24 +25,18 @@ function Create() {
         }
     }, [id]);
 
-    const saveOrUpdate = (user) => {
-        user.preventDefault();
-        if (id === "_add") {
-            createUser(user).then(() => {
-                navigate("/users");
-            })
-                .catch((error) => {
-                    console.log(error);
-                });
-        } else {
-            updateUser(id, user).then(error => {
+    const save = (event) => {
+        event.preventDefault();
+        createUser(user).then(() => {
+            navigate("/users");
+        })
+            .catch((error) => {
                 console.log(error);
             });
-        }
     };
 
-    const handleChange = (user) => {
-        const {name, value} = user.target;
+    const handleChange = (event) => {
+        const { name, value } = event.target;
         setUser(oldUser => ({
             ...oldUser,
             [name]: value,
@@ -53,25 +47,18 @@ function Create() {
         navigate("/users");
     };
 
-    const getTitle = () => {
-        if (id !== "_add")
-            return <h3 className="text-center">Add</h3>;
-        else
-            return <h3 className="text-center">Update</h3>;
-    };
-
     return (
         <div>
-            <br/>
             <div className="container">
                 <div className="row">
                     <div className="card col-md-6 offset-md-3">
-                        {getTitle()}
+                        Create
                         <div className="card-body">
                             <form>
                                 <div className="form-group">
                                     <label>First name:</label>
                                     <input
+                                        type="text"
                                         placeholder="First name"
                                         name="firstName"
                                         className="form-control"
@@ -82,6 +69,7 @@ function Create() {
                                 <div className="form-group">
                                     <label>Last Name:</label>
                                     <input
+                                        type="text"
                                         placeholder="Last name"
                                         name="lastName"
                                         className="form-control"
@@ -92,6 +80,7 @@ function Create() {
                                 <div className="form-group">
                                     <label>Email:</label>
                                     <input
+                                        type="email"
                                         placeholder="Email"
                                         name="email"
                                         className="form-control"
@@ -102,14 +91,14 @@ function Create() {
 
                                 <button
                                     className="btn btn-success"
-                                    onClick={saveOrUpdate}
+                                    onClick={save}
                                 >
                                     Save
                                 </button>
                                 <button
                                     className="btn btn-danger"
                                     onClick={handleCancel}
-                                    style={{marginLeft: "10px"}}
+                                    style={{ marginLeft: "10px" }}
                                 >
                                     Cancel
                                 </button>

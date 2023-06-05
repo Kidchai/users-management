@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> update(@PathVariable Long id, User user) {
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
         Optional<User> optional = userRepository.findById(id);
 
         if (optional.isEmpty()) {
