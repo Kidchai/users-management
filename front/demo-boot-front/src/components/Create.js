@@ -3,8 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getUser, createUser } from "../UserService";
 
 function Create() {
-    const navigate = useNavigate;
-    const { id } = useParams;
+    const navigate = useNavigate();
+    const { id } = useParams();
 
     const [user, setUser] = useState({
         firstName: "",
@@ -15,11 +15,11 @@ function Create() {
     useEffect(() => {
         if (id !== "_add") {
             getUser(id)
-                .then(response => {
+                .then((response) => {
                     const { firstName, lastName, email } = response.data;
                     setUser({ firstName, lastName, email });
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                 });
         }
