@@ -52,22 +52,26 @@ function Create() {
             <div className="container">
                 <div className="row">
                     <div className="card col-md-6 offset-md-3">
-                        Create
                         <div className="card-body">
+                            <h3 class="card-title" style={{ marginBottom: "20px"}}>
+                                New user</h3>
                             <form>
                                 <div className="form-group">
-                                    <label>First name:</label>
+                                    <label style={{ marginLeft: "1px"}}>
+                                        First name:</label>
                                     <input
+                                        className="form-control"
                                         type="text"
                                         placeholder="First name"
                                         name="firstName"
-                                        className="form-control"
                                         value={user.firstName}
                                         onChange={handleChange}
+                                        style={{ marginBottom: "9px", marginTop: "4px" }}
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Last Name:</label>
+                                    <label style={{ marginLeft: "1px" }}>
+                                        Last Name:</label>
                                     <input
                                         type="text"
                                         placeholder="Last name"
@@ -75,10 +79,12 @@ function Create() {
                                         className="form-control"
                                         value={user.lastName}
                                         onChange={handleChange}
+                                        style={{ marginBottom: "9px", marginTop: "4px" }}
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Email:</label>
+                                    <label style={{ marginLeft: "1px" }}>
+                                        Email:</label>
                                     <input
                                         type="email"
                                         placeholder="Email"
@@ -86,19 +92,20 @@ function Create() {
                                         className="form-control"
                                         value={user.email}
                                         onChange={handleChange}
+                                        style={{ marginBottom: "9px", marginTop: "4px" }}
                                     />
                                 </div>
-
                                 <button
                                     className="btn btn-success"
                                     onClick={save}
+                                    style={{ marginTop: "4px" }}
                                 >
                                     Save
                                 </button>
                                 <button
                                     className="btn btn-danger"
                                     onClick={handleCancel}
-                                    style={{ marginLeft: "10px" }}
+                                    style={{ marginLeft: "10px", marginTop: "4px" }}
                                 >
                                     Cancel
                                 </button>

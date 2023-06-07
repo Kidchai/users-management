@@ -15,3 +15,5 @@ node_modules
 /front/demo-boot-front/HELP.md
 /front/demo-boot-front/mvnw
 /front/demo-boot-front/mvnw.cmd
+/front/package.json
+/front/package-lock.json

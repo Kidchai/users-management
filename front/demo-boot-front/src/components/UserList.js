@@ -52,7 +52,7 @@ function UserList() {
         <div>
             <br />
             <br />
-            <table className="table table-striped table-bordered rounded">
+            <table className="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th>First Name</th>
