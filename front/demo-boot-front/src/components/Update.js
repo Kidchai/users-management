@@ -38,59 +38,76 @@ function Update() {
         navigate("/users");
     };
 
+
     return (
         <div>
-            <h2 className="text-center">Update</h2>
-            <form>
-                <div className="form-group">
-                    <label>First name:</label>
-                    <input
-                        type="text"
-                        placeholder={user.firstName}
-                        className="form-control"
-                        name="firstName"
-                        value={user.firstName}
-                        onChange={handleChange}
-                    />
+            <div className="container">
+                <div className="row">
+                    <div className="card col-md-6 offset-md-3">
+                        <div className="card-body">
+                            <h3 class="card-title" style={{ marginBottom: "20px" }}>
+                                Edit user</h3>
+                            <form>
+                                <div className="form-group">
+                                    <label style={{ marginLeft: "1px" }}>
+                                        First name:</label>
+                                    <input
+                                        className="form-control"
+                                        type="text"
+                                        placeholder={user.firstName}
+                                        name="firstName"
+                                        value={user.firstName}
+                                        onChange={handleChange}
+                                        style={{ marginBottom: "9px", marginTop: "4px" }}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label style={{ marginLeft: "1px" }}>
+                                        Last Name:</label>
+                                    <input
+                                        type="text"
+                                        placeholder={user.lastName}
+                                        name="lastName"
+                                        className="form-control"
+                                        value={user.lastName}
+                                        onChange={handleChange}
+                                        style={{ marginBottom: "9px", marginTop: "4px" }}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label style={{ marginLeft: "1px" }}>
+                                        Email:</label>
+                                    <input
+                                        type="email"
+                                        placeholder={user.email}
+                                        name="email"
+                                        className="form-control"
+                                        value={user.email}
+                                        onChange={handleChange}
+                                        style={{ marginBottom: "9px", marginTop: "4px" }}
+                                    />
+                                </div>
+                                <button
+                                    className="btn btn-success"
+                                    onClick={handleSubmit}
+                                    style={{ marginTop: "4px" }}
+                                >
+                                    Save
+                                </button>
+                                <button
+                                    className="btn btn-danger"
+                                    onClick={handleCancel}
+                                    style={{ marginLeft: "10px", marginTop: "4px" }}
+                                >
+                                    Cancel
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label>Last Name:</label>
-                    <input
-                        type="text"
-                        placeholder={user.lastName}
-                        className="form-control"
-                        name="lastName"
-                        value={user.lastName}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Email:</label>
-                    <input
-                        type="text"
-                        placeholder={user.email}
-                        className="form-control"
-                        name="email"
-                        value={user.email}
-                        onChange={handleChange}
-                    />
-                </div>
-                <button
-                    type="submit"
-                    className="btn btn-primary"
-                    onClick={handleSubmit}>
-                    Save
-                </button>
-                <button
-                    className="btn btn-danger"
-                    onClick={handleCancel}
-                    style={{ marginLeft: "10px" }}
-                >
-                    Cancel
-                </button>
-            </form>
+            </div>
         </div>
     );
-};
+}
 
 export default Update;
