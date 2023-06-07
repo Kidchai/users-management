@@ -1,16 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 function Header() {
-  const navigate = useNavigate();
 
   return (
-    <div>
-      <header>
-        <h1>Header</h1>
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-          <div>User Management</div>
-        </nav>
+    <div class="container">
+      <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+          <span class="fs-4">User Management System</span>
+        </a>
       </header>
     </div>
   );

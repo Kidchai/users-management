@@ -42,11 +42,6 @@ function UserList() {
     return (
         <div>
             <h3>Users</h3>
-            <div className="row">
-                <button className="btn btn-primary" onClick={addUser}>
-                    Add
-                </button>
-            </div>
             <br />
             <br />
             <div className="row">
@@ -91,6 +86,11 @@ function UserList() {
                         ))}
                     </tbody>
                 </table>
+            </div>
+            <div className="row">
+                <button className="btn btn-primary" onClick={addUser}>
+                    Add user
+                </button>
             </div>
         </div>
     );
