@@ -13,22 +13,29 @@ const View = () => {
     }, [id]);
 
     return (
-        <div>
-            <br />
-            <div className="card col-md-6 offset-md-3">
-                <h3 className="text-center">User info</h3>
-                <div className="card-body">
-                    <div className="row">
-                        <label>First name:</label>
-                        <div>{user.firstName}</div>
-                    </div>
-                    <div className="row">
-                        <label>Last name:</label>
-                        <div>{user.lastName}</div>
-                    </div>
-                    <div className="row">
-                        <label>Email:</label>
-                        <div>{user.email}</div>
+
+        <div className="container">
+            <div className="row">
+                <div className="card col-md-6 offset-md-3">
+                    <div className="card-body">
+                        <h3 class="card-title" style={{ marginBottom: "20px" }}>
+                            User info</h3>
+                        <div className="row" style={{ marginBottom: "6px" }}>
+                            <div>
+                                <mark>First name:</mark>{user.firstName}
+                            </div>
+                        </div>
+
+                        <div className="row" style={{ marginBottom: "6px" }}>
+                            <div>
+                                <mark>Last name:</mark> {user.lastName}
+                            </div>
+                        </div>
+                        <div className="row" style={{ marginBottom: "6px" }}>
+                            <div>
+                                <mark>Email:</mark>  {user.email}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

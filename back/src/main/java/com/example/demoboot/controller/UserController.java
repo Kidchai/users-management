@@ -1,62 +1,55 @@
 package com.example.demoboot.controller;
 
 import com.example.demoboot.entitiy.User;
-import com.example.demoboot.repository.UserRepository;
+import com.example.demoboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
 @CrossOrigin(origins = "http://localhost:3000") // React port
 public class UserController {
-
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User user) {
-        return ResponseEntity.ok(userRepository.save(user));
+        return ResponseEntity.ok(userService.create(user));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<User> get(@PathVariable Long id) {
-        Optional<User> user = userRepository.findById(id);
-        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        try {
+            return ResponseEntity.ok(userService.get(id));
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping()
     public ResponseEntity<List<User>> getAll() {
-        return ResponseEntity.ok(userRepository.findAll());
+        return ResponseEntity.ok(userService.getAll());
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
-        Optional<User> optional = userRepository.findById(id);
-
-        if (optional.isEmpty()) {
-            throw new RuntimeException("User not found");
+        try {
+            return ResponseEntity.ok(userService.update(id, user));
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
         }
-
-        User oldUser = optional.get();
-
-        oldUser.setFirstName(user.getFirstName());
-        oldUser.setLastName(user.getLastName());
-        oldUser.setEmail(user.getEmail());
-
-        return ResponseEntity.ok(userRepository.save(oldUser));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        userRepository.deleteById(id);
+        userService.delete(id);
         return ResponseEntity.ok().build();
     }
 }
