@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllUsers, deleteUser } from "../UserService";
-import { Pagination } from 'react-bootstrap';
+import { getAllUsers, deleteUser } from "../../UserService";
+import UserRow from './UserRow';
+import UserPagination from './UserPagination';
 
 const itemsPerPage = 4;
 
@@ -63,45 +64,11 @@ function UserList() {
                 </thead>
                 <tbody>
                     {paginatedUsers.map((user) => (
-                        <tr key={user.id}>
-                            <td>{user.firstName}</td>
-                            <td>{user.lastName}</td>
-                            <td>{user.email}</td>
-                            <td>
-                                <button
-                                    onClick={() => editUser(user.id)}
-                                    className="btn btn-primary"
-                                >
-                                    Edit
-                                </button>
-                                <button
-                                    style={{ marginLeft: "10px" }}
-                                    onClick={() => removeUser(user.id)}
-                                    className="btn btn-danger"
-                                >
-                                    Delete
-                                </button>
-                                <button
-                                    style={{ marginLeft: "10px" }}
-                                    onClick={() => viewUser(user.id)}
-                                    className="btn btn-info"
-                                >
-                                    View
-                                </button>
-                            </td>
-                        </tr>
+                        <UserRow user={user} editUser={editUser} removeUser={removeUser} viewUser={viewUser} />
                     ))}
                 </tbody>
             </table>
-            <div className="d-grid gap-2 d-md-flex justify-content-md-center">
-            <Pagination>
-                {[...Array(Math.ceil(users.length / itemsPerPage))].map((_, index) => (
-                    <Pagination.Item key={index} active={index + 1 === currentPage} onClick={() => handlePageChange(index + 1)}>
-                        {index + 1}
-                    </Pagination.Item>
-                ))}
-            </Pagination>
-            </div>
+            <UserPagination currentPage={currentPage} handlePageChange={handlePageChange} totalUsers={users.length} itemsPerPage={itemsPerPage} />
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button className="btn btn-primary me-md-2 shadow-sm p-3 mb-5" onClick={addUser}>Add user</button>
             </div>
