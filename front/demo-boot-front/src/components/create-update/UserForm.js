@@ -1,43 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { getUser, updateUser } from "../UserService";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function Update() {
+function UserForm({ user, handleChange, handleSubmit, formTitle, buttonLabel, placeholders }) {
     const navigate = useNavigate();
-    const { id } = useParams();
-
-    const [user, setUser] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-    })
-
-
-    useEffect(() => {
-        getUser(id).then(response => {
-            setUser(response.data);
-        });
-    }, [id]);
-
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setUser(oldUser => ({
-            ...oldUser,
-            [name]: value,
-        }));
-    };
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        updateUser(id, user).then(() => {
-            navigate("/users");
-        });
-    };
 
     const handleCancel = () => {
         navigate("/users");
     };
-
 
     return (
         <div>
@@ -45,16 +14,17 @@ function Update() {
                 <div className="row">
                     <div className="card col-md-6 offset-md-3">
                         <div className="card-body">
-                            <h3 class="card-title" style={{ marginBottom: "20px" }}>
-                                Edit user</h3>
+                            <h3 className="card-title" style={{ marginBottom: "20px"}}>
+                                {formTitle}
+                            </h3>
                             <form>
                                 <div className="form-group">
-                                    <label style={{ marginLeft: "1px" }}>
+                                    <label style={{ marginLeft: "1px"}}>
                                         First name:</label>
                                     <input
                                         className="form-control"
                                         type="text"
-                                        placeholder={user.firstName}
+                                        placeholder={placeholders.firstName}
                                         name="firstName"
                                         value={user.firstName}
                                         onChange={handleChange}
@@ -66,7 +36,7 @@ function Update() {
                                         Last Name:</label>
                                     <input
                                         type="text"
-                                        placeholder={user.lastName}
+                                        placeholder={placeholders.lastName}
                                         name="lastName"
                                         className="form-control"
                                         value={user.lastName}
@@ -79,7 +49,7 @@ function Update() {
                                         Email:</label>
                                     <input
                                         type="email"
-                                        placeholder={user.email}
+                                        placeholder={placeholders.email}
                                         name="email"
                                         className="form-control"
                                         value={user.email}
@@ -92,7 +62,7 @@ function Update() {
                                     onClick={handleSubmit}
                                     style={{ marginTop: "4px" }}
                                 >
-                                    Save
+                                    {buttonLabel}
                                 </button>
                                 <button
                                     className="btn btn-danger"
@@ -110,4 +80,4 @@ function Update() {
     );
 }
 
-export default Update;
+export default UserForm;

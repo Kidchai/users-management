@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserList from "./components/user_list/UserList";
-import Create from "./components/Create";
-import Update from "./components/Update";
+import Create from "./components/create-update/Create";
+import Update from "./components/create-update/Update";
 import View from "./components/View";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
